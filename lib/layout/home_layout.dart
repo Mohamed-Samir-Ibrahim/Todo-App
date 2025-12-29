@@ -22,8 +22,10 @@ class _HomeLayoutState extends State<HomeLayout> {
 
   List<String> titles = ['New Tasks', 'Done Tasks', 'Archived Tasks'];
 
-  void createDatabase() {
-    openDatabase(
+  late Database database;
+
+  Future<void> createDatabase() async {
+    database = await openDatabase(
       'todo.db',
       version: 1,
       onCreate: (db, version) {
